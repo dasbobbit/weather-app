@@ -1,88 +1,99 @@
-const displayData = (data) => {
-  clearData();
-
+const displayData = (data, localTime) => {
   const weatherDivContainer = document.querySelector("#weather-div-container");
 
+  const weatherDivItem = document.createElement("div");
+  weatherDivItem.className = "weather-div-item";
+
+  const topDiv = document.createElement("div");
+  topDiv.className = "top-div";
+
   const weatherDiv = document.createElement("div");
-  weatherDiv.id = 'weather-div';
+  weatherDiv.className = "weather-div";
 
   const tempDiv = document.createElement("div");
   tempDiv.className = "temp-div";
   const tempNumber = document.createElement("span");
-  tempNumber.id = "current-temp-number";
+  tempNumber.className = "current-temp-number";
   const tempUnit = document.createElement("span");
-  tempUnit.id = "current-temp-unit";
+  tempUnit.className = "current-temp-unit";
 
-  
-  
   const descriptionIcon = document.createElement("img");
   descriptionIcon.src = `http://openweathermap.org/img/wn/${data.weather_icon}@2x.png`;
   const description = document.createElement("a");
   description.textContent = `${data.weather_description}`;
-  
-  
-  
+
+  // Using weather icons to determine whether day or night
+  if (data.weather_icon[2] == "d") {
+    weatherDivItem.classList.add("day");
+  } else {
+    weatherDivItem.classList.add("night");
+  }
+
   const windIcon = document.createElement("img");
   // windIcon.src = ``;
   const windSpeed = document.createElement("a");
-  windSpeed.textContent = `Wind: ${data.wind_speed}m/s`;
-  
-  const humidityIcon = document.createElement("img");
+  windSpeed.textContent = `wind: ${data.wind_speed}m/s`;
+
+
   const humidity = document.createElement("a");
-  humidity.textContent = `Humidity: ${data.humidity}%`;
-  
-  
+  humidity.textContent = `humidity: ${data.humidity}%`;
+
+  const time = document.createElement('a');
+  time.textContent = `local time: ${localTime.time_24.slice(0,5)}`;
+
   const city = document.createElement("p");
-  const currT = document.createElement("a");
-  const maxT = document.createElement("a");
-  const minT = document.createElement("a");
+
   city.textContent = data.name + ", " + data.country;
-  currT.textContent = `Now: ${data.temp}°`;
+
+
+  const closeItem = document.createElement("span");
+  closeItem.className = "close";
+  closeItem.textContent = "x";
+
+  topDiv.appendChild(time);
+  topDiv.appendChild(city);
+  topDiv.appendChild(closeItem);
 
   tempDiv.textContent = `${data.temp}°`;
-  
+
   const infoDiv = document.createElement("div");
-  infoDiv.className = 'info-div';
-  
+  infoDiv.className = "info-div";
+
   let infoLineDiv = document.createElement("div");
-  infoLineDiv.className = 'info-line-div';
+  infoLineDiv.className = "info-line-div";
   // infoLineDiv.appendChild(descriptionIcon);
   infoLineDiv.appendChild(description);
   infoDiv.appendChild(infoLineDiv);
-  console.log(infoLineDiv.child)
-  
+
   infoLineDiv = document.createElement("div");
-  infoLineDiv.className = 'info-line-div';
-  infoLineDiv.appendChild(windIcon);
+  infoLineDiv.className = "info-line-div";
+  // infoLineDiv.appendChild(windIcon);
   infoLineDiv.appendChild(windSpeed);
   infoDiv.appendChild(infoLineDiv);
-  
+
   infoLineDiv = document.createElement("div");
-  infoLineDiv.className = 'info-line-div';
-  infoLineDiv.appendChild(humidityIcon);
+  infoLineDiv.className = "info-line-div";
+  // infoLineDiv.appendChild(humidityIcon);
   infoLineDiv.appendChild(humidity);
   infoDiv.appendChild(infoLineDiv);
-  
+
   weatherDiv.appendChild(tempDiv);
-  weatherDiv.appendChild(descriptionIcon)
+  weatherDiv.appendChild(descriptionIcon);
   weatherDiv.appendChild(infoDiv);
-  
-  
-  weatherDivContainer.appendChild(city);
-  weatherDivContainer.appendChild(weatherDiv);
-  // weatherDivContainer.appendChild(currT);
-  // weatherDivContainer.appendChild(minT);
-  // weatherDivContainer.appendChild(maxT);
-  // weatherDivContainer.appendChild(description);
-  // weatherDivContainer.appendChild(descriptionIcon);
-  console.log(data);
+
+  weatherDivItem.appendChild(topDiv);
+  weatherDivItem.appendChild(weatherDiv);
+  weatherDivContainer.appendChild(weatherDivItem);
+
+  // Set close item event listener
+  closeItem.addEventListener("click", clearData);
 };
 
-const clearData = () => {
-  let weatherDivContainer = document.querySelector("#weather-div-container");
-  while (weatherDivContainer.lastElementChild) {
-    weatherDivContainer.removeChild(weatherDivContainer.lastElementChild);
-  }
+
+
+// Clears div where the close was clicked
+function clearData() {
+  this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
 }
 
-export default displayData;
+export { displayData, clearData };

@@ -1,78 +1,185 @@
-html {
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: 500;
-  letter-spacing: 1px;
-  background: rgb(197, 197, 197);
+@font-face {
+  font-family: 'iceBear';
+  src: url('../src/IcebearRegular-8MLDM.ttf');
+}
 
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  background: url(../src/images/weather.png);
 }
 
 body {
-  width: 600px;
+  width: 80%;
+  max-width: 720px;
+  min-width: 360px;
   margin: 0 auto;
 }
+
+h1 {
+  color: rgba(0, 191, 255, 1);
+  margin: 2vh auto;
+  text-align: center;
+  font-size: 70px;
+  font-family: 'iceBear';
+}
+
 .search-div {
+  margin: 30px auto 0 auto;
   display: flex;
-  justify-content: center;
-  /* flex-direction: column; */
-  align-items: center;
-  margin-top: 5rem;
+  flex-direction: row;
+  box-shadow: none;
+
+  z-index: 3;
+  height: 44px;
+  width: 240px;
 }
 
-.search-div button {
-  /* width:  */
+#search-input {
+  color: rgb(9, 9, 64);
+  padding-left: 1rem;
+  display: flex;
+  flex-basis: 80em;
+  border: transparent;
+  font-size: 16px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  background: rgb(0, 35, 93);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 191, 255, 1) 0%,
+    rgb(111, 219, 255) 50%,
+    rgb(160, 231, 255) 100%
+  );
 }
 
-.search-div input {
-  border: 0;
+#search-input:focus {
+  outline-width: 0;
+}
+
+#search-input::placeholder {
+  color: rgb(0, 88, 104);
+}
+
+#search-button {
+  display: flex;
+  flex-basis: 10em;
+  /* margin: auto 5px auto 0; */
+  flex: 1;
+  border: none;
+  background: rgb(160, 231, 255);
+  cursor: pointer;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+#img-magglass {
+  width: 20px;
+  margin: auto 10px;
   opacity: 0.5;
-  border-bottom: 1px solid black;
-  border-radius: 5px;
-  height: 20px;
-  /* width: 100%; */
-  padding: 2px 23px 2px 30px;
-  outline: 0;
-  background-color: #f5f5f5;
+  background: rgb(160, 231, 255);
 }
 
-#weather-div-container {
+.weather-div-item {
+  color: #fff;
+  background-color: rgb(87, 87, 87);
   margin-top: 3rem;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  box-shadow: 0px 5px 7px rgba(58, 58, 58, 0.74);
+  animation: slide-up 50ms ease-in-out;
 }
 
-#weather-div-container p {
+/* Add Animation */
+@keyframes slide-up {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
 
+.top-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.top-div a {
+  margin: 10px 0 0 2vw;
+}
+
+.top-div p {
+  font-size: 24px;
+  z-index: 1;
+  flex-grow: 1;
+  margin: 10px 90px 0 0;
   text-align: center;
 }
 
-#weather-div {
+.close {
+  color: rgba(255, 255, 255, 0.534);
+  font-weight: 300;
+  font-size: 36px;
+  margin-right: 1vw;
+  cursor: pointer;
+}
+
+.weather-div {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weather-div img {
+  letter-spacing: 0;
+}
+
+.info-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .temp-div {
-  font-weight: 300;
+  font-weight: 250;
   font-size: 100px;
-  /* letter-spacing: -10px; */
-  margin-right: 20px;
+  letter-spacing: -10px;
+  margin-left: 2vw;
 }
 
 .info-line-div {
+  /* margin-right: 2vw; */
+  margin: 1vw 2vw 0 0;
   align-items: center;
 }
 
 .info-line-div img {
-  height: 30px
+  height: 30px;
 }
 
-#output a, p {
-  /* color: rebeccapurple; */
+.day {
+  background: rgb(0, 35, 93);
+  background: linear-gradient(
+    16deg,
+    rgba(0, 35, 93, 1) 0%,
+    rgba(0, 150, 200, 1) 49%,
+    rgba(0, 191, 255, 1) 100%
+  );
 }
 
-#output p {
-  font-size: 36px;
-}
-
-#output a {
-  font-size: 24px;
-  padding: 0.2rem;
-
+.night {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    16deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(11, 11, 74, 1) 48%,
+    rgba(35, 35, 152, 1) 100%
+  );
 }

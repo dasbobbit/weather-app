@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "csv-loader": "^3.0.3",
+    "date-fns": "^2.19.0",
     "lodash": "^4.17.21",
     "xml-loader": "^1.2.1"
   }
