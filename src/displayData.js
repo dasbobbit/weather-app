@@ -4,17 +4,17 @@ const displayData = (data, localTime) => {
   const weatherDivItem = document.createElement("div");
   weatherDivItem.className = "weather-div-item";
 
-  const topDiv = document.createElement("div");
-  topDiv.className = "top-div";
 
+  const topDiv = document.createElement("div");
   const weatherDiv = document.createElement("div");
+  topDiv.className = "top-div";
   weatherDiv.className = "weather-div";
 
   const tempDiv = document.createElement("div");
-  tempDiv.className = "temp-div";
   const tempNumber = document.createElement("span");
-  tempNumber.className = "current-temp-number";
   const tempUnit = document.createElement("span");
+  tempDiv.className = "temp-div";
+  tempNumber.className = "current-temp-number";
   tempUnit.className = "current-temp-unit";
 
   const descriptionIcon = document.createElement("img");
@@ -30,7 +30,6 @@ const displayData = (data, localTime) => {
   }
 
   const windIcon = document.createElement("img");
-  // windIcon.src = ``;
   const windSpeed = document.createElement("a");
   windSpeed.textContent = `wind: ${data.wind_speed}m/s`;
 
@@ -61,19 +60,16 @@ const displayData = (data, localTime) => {
 
   let infoLineDiv = document.createElement("div");
   infoLineDiv.className = "info-line-div";
-  // infoLineDiv.appendChild(descriptionIcon);
   infoLineDiv.appendChild(description);
   infoDiv.appendChild(infoLineDiv);
 
   infoLineDiv = document.createElement("div");
   infoLineDiv.className = "info-line-div";
-  // infoLineDiv.appendChild(windIcon);
   infoLineDiv.appendChild(windSpeed);
   infoDiv.appendChild(infoLineDiv);
 
   infoLineDiv = document.createElement("div");
   infoLineDiv.className = "info-line-div";
-  // infoLineDiv.appendChild(humidityIcon);
   infoLineDiv.appendChild(humidity);
   infoDiv.appendChild(infoLineDiv);
 
